@@ -1,3 +1,20 @@
+# Project name: simple-firebase-authentication
+
+## facebook login
+
+## github login
+
+## google login
+
+This is a simple firebase authentication project. we covered facebook, google & github authentication.
+
+## important links are given below
+
+[github](https://github.com/Deep-Matrix-WebHero/simple-firebase-auth)
+[netlifyLiveLink]()
+
+##
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

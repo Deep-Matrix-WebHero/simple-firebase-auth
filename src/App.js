@@ -5,16 +5,19 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 import {useState} from "react";
 
 const googleProvider = new GoogleAuthProvider();
 const gitHubProvider = new GithubAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 initializeAuthentication();
 
 function App() {
   const [user, setUser] = useState({});
   const auth = getAuth();
+  // google sign in
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
@@ -30,6 +33,7 @@ function App() {
         console.log(error.message);
       });
   };
+  // github sign in
   const handleGithubSignIn = () => {
     signInWithPopup(auth, gitHubProvider)
       .then((result) => {
@@ -44,8 +48,34 @@ function App() {
         console.log(error.message);
       });
   };
+  // facebook sign in
+  const handleFacebookSignIn = () => {
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        const {displayName, photoURL} = result.user;
+        const logedInUser = {
+          name: displayName,
+          photo: photoURL,
+        };
+        setUser(logedInUser);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <div className="App">
+      <div>
+        <button onClick={handleFacebookSignIn}>Facebook SignIn</button>
+        <br />
+        {user.name && (
+          <div>
+            <h2>Myself {user.name}</h2>
+
+            <img src={user.photo} alt="" />
+          </div>
+        )}
+      </div>
       <div>
         <button onClick={handleGoogleSignIn}>Google SignIn</button>
         {user.name && (
